@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: simple-app
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/gulec2000/gitops-demo-cl.git
+    targetRevision: HEAD
+    path: simple-app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: simple
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
