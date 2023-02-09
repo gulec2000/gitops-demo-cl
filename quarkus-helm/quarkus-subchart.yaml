@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: quarkus-helm/quarkus-subchart/
-    repoURL: https://github.com/redhat-developer-demos/openshift-gitops-examples
+    repoURL: https://github.com/gulec2000/gitops-demo-cl
     targetRevision: main
   syncPolicy:
     automated:
