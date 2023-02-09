@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kustomize/apps/bgd/overlays/bgdk
+    path: apps/bgd/overlays/bgdk
     repoURL: https://github.com/gulec2000/gitops-demo-cl
     targetRevision: main
   syncPolicy:
