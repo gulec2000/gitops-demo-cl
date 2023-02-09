@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bubble-animation-app
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: bubble-app
+    server: https://kubernetes.default.svc 
+  project: default 
+  source: 
+    path: bubble-app/application-mainfest
+    repoURL: https://github.com/gulec2000/gitops-demo-cl
+    targetRevision: main
+  syncPolicy: 
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true
