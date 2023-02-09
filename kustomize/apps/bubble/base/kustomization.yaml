@@ -1,5 +1,5 @@
 namespace: bgd
 resources:
 - bubble-svc.yaml
-- buble-deployment.yaml
+- bubble-deployment.yaml
 - bubble-route.yaml
