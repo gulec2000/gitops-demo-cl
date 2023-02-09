@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bgd-app
+  name: bubble-app
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: bgd
+    namespace: bubble
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kustomize/apps/bgd/overlays/bgd
+    path: kustomize/apps/bubble/overlays/bubble
     repoURL: https://github.com/gulec2000/gitops-demo-cl
     targetRevision: main
   syncPolicy:

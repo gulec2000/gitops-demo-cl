@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bgdk-app
+  name: bubblek-app
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: bgdk
+    namespace: bubblek
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: kustomize/apps/bgd/overlays/bgdk
+    path: kustomize/apps/bubble/overlays/bubblek
     repoURL: https://github.com/gulec2000/gitops-demo-cl
     targetRevision: main
   syncPolicy:
