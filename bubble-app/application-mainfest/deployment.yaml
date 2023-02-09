@@ -22,7 +22,7 @@ spec:
         name: bubble-animation
         env:
         - name: COLOR
-          value: "blue"
+          value: "green"
         resources:
           requests:
             memory: "64Mi"
