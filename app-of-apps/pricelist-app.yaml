@@ -1,20 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: quarkus-subchart
+  name: pricelist-app
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: quarkus
+    namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: quarkus-helm/quarkus-subchart/
-    repoURL: https://github.com/redhat-developer-demos/openshift-gitops-examples
+    path: app-of-apps/apps
+    repoURL: https://github.com/gulec2000/gitops-demo-cl
     targetRevision: main
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
