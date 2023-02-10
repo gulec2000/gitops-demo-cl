@@ -1,4 +1,4 @@
-# gitops-demo-cl
+# gitops-demo
 GitOps Demo using Openshift Local, ArgoCD, HelmChart
 
 ## Instructions
