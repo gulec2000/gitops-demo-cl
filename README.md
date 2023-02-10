@@ -29,14 +29,20 @@ oc adm policy add-cluster-role-to-user cluster-admin -z openshift-gitops-argocd-
 ```
 ### Argocd
 
-> Open Openshift Console
-> Click on Square Button on top right besides alarm logo
-> Open Cluster Argo CD. It opens in a new window
-> go back to openshift console
-> look for secret called openshift-gitops-cluster and copy the admin password
-> go back to argocd
-> login to argocd with username 'admin' and password
-> there you are
+> * Open Openshift Console
+> * Click on Square Button on top right besides alarm logo or use oc command to get argocd url
+```bash
+oc get routes -n openshift-gitops | grep openshift-gitops-server | awk '{print $2}'
+```
+> * Open Cluster Argo CD. It opens in a new window
+> * go back to openshift console
+> * look for secret called openshift-gitops-cluster and copy the admin password or just use oc commands to get admin passwort:
+```bash
+oc extract secret/openshift-gitops-cluster -n openshift-gitops --to=-
+```
+> * go back to argocd
+> * login to argocd with username 'admin' and password
+> * there you are
 
 ### simple-app
 we deploy an app over ocp. we use **oc apply** command
@@ -46,7 +52,59 @@ cd gitops-demo-cl
 oc apply -f simple-app/application.yaml
 ````
 
+### bubble-app
 
+````bash
+git clone https://github.com/gulec2000/gitops-demo-cl.git
+cd gitops-demo-cl
+oc apply -f bubble-app/argo-application.yaml
+````
+* **Changing bubble color to green**
+
+> * As we use gitops method, at first, we change deployment.yaml in bubble-app directory in github
+> * Then we change env value to green
+> * commit and push the change to git remote repo
+> * check the website, whether change of bubble color can be observed
+
+### Kustomize Usage with Argocd and Openshift
+
+>* Creating a bubble app with different color using Kustomize
+>* Overview of Kustomize tree
+
+![Kustomize!](Kustomize.PNG "Kustomize Files Tree")
+
+* Bubble App
+````bash
+cd kustomize/
+oc apply -f components/applications/bubble/bubble-app.yaml
+````
+> * go to routes in bubble-app namespace and open the browser. It should be green
+* Bubblek App
+````bash
+cd kustomize/
+oc apply -f components/applications/bubblek/bubblek-app.yaml
+````
+> * go to routes in bubblek namespace and open the browser. It should be yellow
+### Helm Chart with argocd and Openshift
+* Quarkus app using helm chart as source
+
+````bash
+cd quarkus-helm/
+oc apply -f quarkus.yaml
+````
+* Quarkus app with helm chart using git as source
+
+````bash
+cd quarkus-helm/
+oc apply -f quarkus-subchart.yaml
+````
+### App of apps
+* Pricelist-Web App with app of apps usage of argocd over openshift
+>* This app consists of three sub-apps in argocd. We apply only pricelist-app. But there will be 4 apps in argocd 
+````bash
+cd app of apps/
+oc apply -f pricelist-app.yaml
+````
 
 
  
