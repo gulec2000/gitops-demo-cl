@@ -10,7 +10,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "4"
 spec:
-  host: ""
+  host: "pricelist-route-pricelist.apps-crc.testing"
   port:
     targetPort: 8080
   to:
