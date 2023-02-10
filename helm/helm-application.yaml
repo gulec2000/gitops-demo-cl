@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-guestbook
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    path: helm/helm-guestbook/
+    repoURL: https://github.com/gulec2000/gitops-demo-cl.git
+    targetRevision: main
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: helm-guestbook
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
